@@ -7,86 +7,72 @@ use App\Models\Tarea;
 
 class TareaController extends Controller
 {
+    //AUTH
     public function __construct()
     {
         $this->middleware('auth');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    //index
     public function index()
     {   
-        return Tarea::get();
+        $tarea = Tarea::all()->toArray();
+        return $tarea; 
     }   
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function create()
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $tarea = new Tarea;
-        $tarea->create($request->all());
-
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Tarea $tarea)
-    {
-        return $tarea;
         
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //CREATE
+    public function store(Request $request)
+    {
+        $tarea = new Tarea([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'mobile' => $request->input('mobile'),
+            'gender' => $request->input('gender')
+        ]);
+        $tarea->save();
+
+        return response()->json('tarea created successfully!');
+
+    }
+
+   
+    //READ
+    public function show($id)
+    {
+        $tarea = Tarea::find($id);
+        return response()->json($tarea);
+        
+    }
+
+   
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Tarea $tarea)
+    
+    //UPDATE
+    public function update(Request $request, $id)
     {
+        $tarea = Tarea::find($id);
         $tarea->update($request->all());
+
+        return response()->json('Tarea updated successfully!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
+    //DELETE
     public function destroy($id)
     {
-        //
+        $tarea = Tarea::find($id);
+        $tarea->delete();
+
+        return response()->json('Tarea deleted successfully!');
     }
 }
