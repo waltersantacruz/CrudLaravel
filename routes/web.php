@@ -14,11 +14,14 @@ use App\Http\Controllers\TareaController;
 |
 */
 
-
-Route::get('/', function () { return view('welcome'); });
-
 Auth::routes();
 
-Route::apiResource('/tareas', TareaController::class)->middleware('auth');
+//Route::get('/', function () { return view('welcome'); });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::resource('tareas',TareaController::class);
+
+Route::get('{any}', function () {return view('welcome');})->where('any', '.*');
+
