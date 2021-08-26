@@ -7,63 +7,57 @@ use App\Models\Tarea;
 
 class TareaController extends Controller
 {
-    //AUTH
     public function __construct()
     {
         $this->middleware('auth');
     }
+    
 
-    //index
+    //INDEX
     public function index()
     {   
-        $tarea = Tarea::all()->toArray();
-        return $tarea; 
+        return Tarea::get();
     }   
 
    
     public function create()
     {
-        
+        //
     }
+
 
     //CREATE
+   
     public function store(Request $request)
     {
-        $tarea = new Tarea([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'mobile' => $request->input('mobile'),
-            'gender' => $request->input('gender')
-        ]);
-        $tarea->save();
-
-        return response()->json('tarea created successfully!');
+        $tarea = new Tarea;
+        $tarea->create($request->all());
 
     }
 
-   
+  
     //READ
-    public function show($id)
+    public function show(Tarea $tarea)
     {
-        $tarea = Tarea::find($id);
-        return response()->json($tarea);
+        return $tarea;
         
     }
 
-   
+    
+
     public function edit($id)
     {
         //
     }
 
-    
+   
     //UPDATE
     public function update(Request $request, $id)
     {
         $tarea = Tarea::find($id);
         $tarea->update($request->all());
 
-        return response()->json('Tarea updated successfully!');
+        return response()->json('Tarea updated!');
     }
 
     
@@ -73,6 +67,6 @@ class TareaController extends Controller
         $tarea = Tarea::find($id);
         $tarea->delete();
 
-        return response()->json('Tarea deleted successfully!');
+        return response()->json('Tarea deleted!');
     }
 }

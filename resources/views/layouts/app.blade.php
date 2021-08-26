@@ -34,12 +34,13 @@
 
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        <!-- 
                         <li>
                             <router-link to='/tareas/consultar'> Mis tareas </router-link>
                         </li>
                          <li>
                             <router-link to='/tareas/crear'> Crear Tarea </router-link>
-                        </li>
+                        </li>-->
 
                     </ul>
 
@@ -83,7 +84,7 @@
         </nav>
 
         <main class="py-4">
-            <router-view></router-view>
+            @yield('content')
         </main>
     </div>
 </body>
