@@ -22,6 +22,11 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::apiResource('/tareas',TareaController::class);
 
+
+Route::get('/tareas/consultar', [App\Http\Controllers\TareaController::class, 'index']);
+
+Route::delete('/tareas/{id}', [App\Http\Controllers\TareaController::class, 'destroy']);
+
+Route::post('/tareas/crear', [App\Http\Controllers\TareaController::class, 'store']);
 

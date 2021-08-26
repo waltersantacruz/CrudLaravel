@@ -2,8 +2,10 @@
 
 @section('content')   
      <div class="container">
-    
-          <tareas></tareas>
-                
+         @if(Auth::check())
+          <tareas :user="{{Auth::user()}}"></tareas>
+          @else   
+          <tareas :user="false"></tareas>
+          @endif
      </div>
 @endsection

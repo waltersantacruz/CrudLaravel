@@ -13,6 +13,7 @@ class Tarea extends Model
         'title', 
         'description',
         'finished',
-        'due_date'
+        'due_date',
+        'user_id',
     ];
 }
