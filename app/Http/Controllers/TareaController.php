@@ -60,6 +60,7 @@ class TareaController extends Controller
         $tarea->update($request->all());
 
         return response()->json('Tarea updated!');
+
     }
 
     

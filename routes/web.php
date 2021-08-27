@@ -26,7 +26,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/tareas/consultar', [App\Http\Controllers\TareaController::class, 'index']);
 
-Route::delete('/tareas/{id}', [App\Http\Controllers\TareaController::class, 'destroy']);
+Route::delete('/tareas/borrar/{id}', [App\Http\Controllers\TareaController::class, 'destroy']);
 
 Route::post('/tareas/crear', [App\Http\Controllers\TareaController::class, 'store']);
+
+Route::put('/tareas/actualizar/{id}', [App\Http\Controllers\TareaController::class, 'update']);
 

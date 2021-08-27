@@ -1944,6 +1944,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['user'],
   data: function data() {
@@ -1955,6 +1957,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         due_date: '2019-06-08',
         user_id: this.user.id
       },
+      id: 0,
       modificar: true,
       modal: 0,
       titleModal: ' ',
@@ -1962,6 +1965,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   methods: {
+    //mostrar tareas
     list: function list() {
       var _this = this;
 
@@ -1987,6 +1991,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
+    //borrar tareas
     erase: function erase(id) {
       var _this2 = this;
 
@@ -1997,7 +2002,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return axios["delete"]('tareas/' + id);
+                return axios["delete"]('tareas/borrar/' + id);
 
               case 2:
                 res = _context2.sent;
@@ -2013,11 +2018,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
+    //crear tareas
     save: function save(id) {
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
-        var fin, params, res;
+        var fin, params, res, _res;
+
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
@@ -2032,29 +2039,32 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 };
 
                 if (!_this3.modificar) {
-                  _context3.next = 5;
+                  _context3.next = 8;
                   break;
                 }
 
-                _context3.next = 9;
-                break;
+                _context3.next = 5;
+                return axios.put('tareas/actualizar/' + _this3.id, _this3.tarea);
 
               case 5:
-                console.log(params);
-                _context3.next = 8;
-                return axios.post('tareas/crear', params);
+                res = _context3.sent;
+                _context3.next = 12;
+                break;
 
               case 8:
-                res = _context3.sent;
+                console.log(params);
+                _context3.next = 11;
+                return axios.post('tareas/crear', params);
 
-              case 9:
-                console.log('sali al else');
+              case 11:
+                _res = _context3.sent;
 
+              case 12:
                 _this3.closeModal();
 
                 _this3.list();
 
-              case 12:
+              case 14:
               case "end":
                 return _context3.stop();
             }
@@ -2062,6 +2072,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee3);
       }))();
     },
+    //abrir modal
     openModal: function openModal() {
       var _arguments = arguments,
           _this4 = this;
@@ -2073,11 +2084,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context4.prev = _context4.next) {
               case 0:
                 data = _arguments.length > 0 && _arguments[0] !== undefined ? _arguments[0] : {};
-                //abre el modal
                 _this4.modal = 1;
 
                 if (_this4.modificar) {
                   _this4.titleModal = 'Editar Tarea';
+                  _this4.id = data.id;
                   _this4.tarea.title = data.title, _this4.tarea.description = data.description, _this4.tarea.finished = data.finished, _this4.tarea.due_date = data.due_date;
                 } else {
                   _this4.titleModal = 'Crear Tarea';
@@ -2092,6 +2103,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee4);
       }))();
     },
+    //cerrar Modal
     closeModal: function closeModal() {
       var _this5 = this;
 
@@ -2100,7 +2112,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                //cierra el modal
                 _this5.modal = 0;
 
               case 1:
@@ -6637,7 +6648,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.show{\r\n    display: list-item;\r\n    opacity: 1;\r\n    background: rgba(44,38,75,0.8);\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.show{\r\n    display: list-item;\r\n    opacity: 1;\r\n    background: rgba(117, 120, 167, 0.8);\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -38904,7 +38915,7 @@ var render = function() {
                 attrs: {
                   type: "text",
                   id: "title",
-                  placeholder: "Título de la terea"
+                  placeholder: "Título de la tarea"
                 },
                 domProps: { value: _vm.tarea.title },
                 on: {
@@ -39070,9 +39081,11 @@ var render = function() {
           return _c("tr", { key: tarea.id }, [
             _c("th", { attrs: { scope: "row" } }, [_vm._v(_vm._s(tarea.id))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(tarea.title) + "k")]),
+            _c("td", [_vm._v(_vm._s(tarea.title))]),
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(tarea.description))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(tarea.due_date))]),
             _vm._v(" "),
             _c("td", [
               _c(
@@ -39123,6 +39136,8 @@ var staticRenderFns = [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Título")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Descripción")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Fecha de vencimiento")]),
         _vm._v(" "),
         _c(
           "th",

@@ -20,7 +20,7 @@
                 <div class="modal-body">
                     <div class="my-4">
                         <label for="title">Título</label>
-                        <input v-model="tarea.title"type="text" class="form-control" id="title" placeholder="Título de la terea">
+                        <input v-model="tarea.title"type="text" class="form-control" id="title" placeholder="Título de la tarea">
                     </div>
 
                     <div class="my-4">
@@ -57,14 +57,16 @@
             <th scope="col">id</th>
             <th scope="col">Título</th>
             <th scope="col">Descripción</th>
+            <th scope="col">Fecha de vencimiento</th>
             <th scope="col" colspan="2" class="text-center">Acción</th>
             </tr>
         </thead>
         <tbody>
             <tr v-for="tarea in tareas" :key="tarea.id">
                 <th scope="row">{{ tarea.id }}</th>
-                <td>{{ tarea.title }}k</td>
+                <td>{{ tarea.title }}</td>
                 <td>{{ tarea.description }}</td>
+                <td>{{ tarea.due_date }}</td>
                 <td>
                     <button @click="modificar=true; openModal(tarea);" class="btn btn-warning">Editar</button>
                 </td>
@@ -91,6 +93,7 @@ export default {
                 user_id: this.user.id
                 
             },
+            id:0,
             modificar:true,
             modal: 0,
             titleModal: ' ',
@@ -99,16 +102,19 @@ export default {
     
     },
     methods: {
+        //mostrar tareas
         async list(){
             const res = await axios.get('tareas/consultar'); //lista las tareas
             this.tareas=res.data;
         },
 
+        //borrar tareas
         async erase(id){
-            const res = await axios.delete('tareas/'+id); //borra la tarea del id ingresado
+            const res = await axios.delete('tareas/borrar/'+id); //borra la tarea del id ingresado
             this.list();
         },
 
+        //crear tareas
         async save(id){
             const fin = parseInt(this.tarea.finished, 10)
             const params ={
@@ -119,19 +125,21 @@ export default {
                 user_id: this.tarea.user_id
             }
             if(this.modificar){
-
+                const res = await axios.put('tareas/actualizar/'+this.id, this.tarea);
             }else{
                 console.log(params)
                 const res = await axios.post('tareas/crear', params); //guardar una tarea
             }
-            console.log('sali al else')
             this.closeModal();
             this.list();
         },
-        async openModal(data={}){ //abre el modal
+
+        //abrir modal
+        async openModal(data={}){
             this.modal = 1;
             if(this.modificar){
                 this.titleModal='Editar Tarea'
+                this.id=data.id
                 this.tarea.title=data.title,
                 this.tarea.description=data.description,
                 this.tarea.finished=data.finished,
@@ -144,7 +152,9 @@ export default {
                 this.tarea.due_date=data.due_date    
             }
         },
-        async closeModal(){ //cierra el modal
+
+        //cerrar Modal
+        async closeModal(){ 
             this.modal = 0;
         }
     },
@@ -160,6 +170,6 @@ export default {
 .show{
     display: list-item;
     opacity: 1;
-    background: rgba(44,38,75,0.8);
+    background: rgba(117, 120, 167, 0.8);
 }
 </style>
