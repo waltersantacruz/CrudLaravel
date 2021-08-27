@@ -27,6 +27,18 @@ class TareaController extends Controller
         //return Tarea::get();
     }   
 
+    public function finished(Request $request)
+    {
+        $tareas = Tarea::query();
+        return $tareas->where('finished', '=', 1)->get();
+    }
+
+    public function inProgress(Request $request)
+    {
+        $tareas = Tarea::query();
+        return $tareas->where('finished', '=', 0)->get();
+    }
+
    
     public function create()
     {
