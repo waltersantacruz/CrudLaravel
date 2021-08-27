@@ -14,9 +14,17 @@ class TareaController extends Controller
     
 
     //INDEX
-    public function index()
+    public function index(Request $request)
     {   
-        return Tarea::get();
+        $tareas = Tarea::query();
+
+        if ($request->get('id')){
+            $tareas->where('user_id', '=', $request->get('id'));
+        }
+
+        return $tareas->get();
+        
+        //return Tarea::get();
     }   
 
    
