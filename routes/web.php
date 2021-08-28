@@ -27,13 +27,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/tareas/consultar', [App\Http\Controllers\TareaController::class, 'index']);
 
 //tareas finalizadas
-Route::get('/tareas/consultar/finalizadas', [App\Http\Controllers\TareaController::class, 'finished']);
+Route::get('/tareas/consultar/finished', [App\Http\Controllers\TareaController::class, 'finished']);
 
 //tareas en proceso
-Route::get('/tareas/consultar/enprogreso', [App\Http\Controllers\TareaController::class, 'inProgress']);
-
-//organizadas por fecha de vencimiento
-Route::get('/tareas/consultar/vencimiento', [App\Http\Controllers\TareaController::class, 'byDueDate']);
+Route::get('/tareas/consultar/inprogress', [App\Http\Controllers\TareaController::class, 'inProgress']);
 
 //borrar una tarea
 Route::delete('/tareas/borrar/{id}', [App\Http\Controllers\TareaController::class, 'destroy']);

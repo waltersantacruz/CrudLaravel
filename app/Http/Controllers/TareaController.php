@@ -41,6 +41,7 @@ class TareaController extends Controller
         return $tareas->where('finished', '=', 0)->get();
     }
 
+
     //retorna todas las tareas organizadas por fecha de vencimiento
     public function byDueDate(Request $request)
     {
