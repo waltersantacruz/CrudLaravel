@@ -25,7 +25,8 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
-        "datatables.net-bs4": "^3.2.2",
-        "vue-axios": "^3.2.5"
+        "moment": "^2.29.1",
+        "vue-axios": "^3.2.5",
+        "vuejs-datepicker": "^1.6.2"
     }
 }
