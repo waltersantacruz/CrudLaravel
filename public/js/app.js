@@ -2236,8 +2236,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 res = _context.sent;
                 //lista las tareas
                 _this.tareas = res.data;
+                console.log(_this.tareas.length);
 
-              case 4:
+              case 5:
               case "end":
                 return _context.stop();
             }
@@ -39529,7 +39530,13 @@ var render = function() {
         }),
         0
       )
-    ])
+    ]),
+    _vm._v(" "),
+    _vm.tareas.length === 0
+      ? _c("h1", { staticClass: "text-center" }, [
+          _vm._v("No hay tareas aún, crea algunas :)")
+        ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = [

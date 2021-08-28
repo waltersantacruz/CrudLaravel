@@ -63,7 +63,7 @@ class TareaController extends Controller
         $tarea = new Tarea;
         $tarea->create($request->all());
 
-        return response()->json('Tarea guardada!');
+        return response()->json('Tarea created successfully!');
 
     }
 

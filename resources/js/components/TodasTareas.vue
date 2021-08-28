@@ -19,10 +19,10 @@
                     <td v-if="tarea.finished === 0"> En proceso </td>
                     <td v-else> Finalizada </td>
                     <td>{{ tarea.due_date }}</td>
-                </tr>
-                
+                </tr>  
             </tbody>
         </table>
+        <h1 v-if="tareas.length === 0" class="text-center">No hay tareas aún, crea algunas :)</h1>
     </div>
 </template>
 
@@ -40,6 +40,7 @@ export default {
             
             const res = await axios.get('tareas/consultar'); //lista las tareas
             this.tareas=res.data;
+            console.log(this.tareas.length)
         },
     },
     created(){
