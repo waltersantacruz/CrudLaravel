@@ -40,14 +40,16 @@
                         </div>
                         <div class="my-4">
                             <label for="description">Fecha de vencimiento</label>
-                            <input v-model="tarea.due_date" type="text" class="form-control" id="due_date" placeholder="fecha de vencimiento">
+                            <datepicker  v-model="tarea.due_date" :format="customDate"></datepicker>
+                            
+                            <!--<input v-model="tarea.due_date" type="text" class="form-control" id="due_date" placeholder="fecha de vencimiento">-->
                         </div>
                         
 
 
                     </div>
                     <div class="modal-footer">
-                        <button @click="closeModal();" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button @click="closeModal(); mostrar();" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button @click="save();" type="button" class="btn btn-primary">Save</button>
                     </div>
                     </div>
@@ -91,7 +93,13 @@
 
 
 <script>
+import datepicker from 'vuejs-datepicker'
+import moment from 'moment'
+
 export default {
+    components:{
+        datepicker
+    },
     props: ['user'],
     data(){
         return {
@@ -99,7 +107,7 @@ export default {
                 title:'',
                 description:'',
                 finished:0,
-                due_date:'',
+                due_date:'hola',
                 user_id: this.user.id
                 
             },
@@ -112,20 +120,26 @@ export default {
     
     },
     methods: {
+        customDate(date){
+            return this.tarea.due_date = moment(this.tarea.due_date).format('YYYY-MM-DD');     
+        },
 
         //mostrar tareas
         async list(){
-            const res = await axios.get('/tareas/consultar?id='+this.user.id); //lista las tareas
+            const res = await axios.get('tareas/consultar?id='+this.user.id); //lista las tareas
             this.tareas=res.data;
             
         },
 
         //borrar tareas
         async erase(id){
-            const res = await axios.delete('/tareas/borrar/'+id); //borra la tarea del id ingresado
+            const res = await axios.delete('tareas/borrar/'+id); //borra la tarea del id ingresado
             this.list();
         },
 
+        mostrar(){
+            console.log(this.tarea.due_date);
+        },
         //crear tareas
         async save(){
             const fin = parseInt(this.tarea.finished, 10)
@@ -160,7 +174,7 @@ export default {
                 this.tarea.title='',
                 this.tarea.description='',
                 this.tarea.finished=0,
-                this.tarea.due_date=data.due_date    
+                this.tarea.due_date=''    
             }   
         },
 
