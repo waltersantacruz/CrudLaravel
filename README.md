@@ -6,10 +6,10 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
+## CRUD TAREAS
 
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+This project was built using laravel 8 and vuejs. 
+It allows you to create, list, update and delete tasks. You can see all tasks but you can only edit and delete your tasks.
 
 ## Clone the project
 
@@ -66,7 +66,7 @@ use this command to run the server in localhost
 
 `at this point your apache and mysql services on xampp should be running`
 
-Go to your localhost and see the project :)
+Go to your localhost and you will see the project.
 
 ## Learning Laravel
 

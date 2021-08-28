@@ -1,0 +1,117 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Tareas",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000"
+        }
+    ],
+    "paths": {
+        "/api/tareas/consultar": {
+            "get": {
+                "summary": "Returns all tareas created",
+                "operationId": "c7e5bba00be5b1242a507874f7fed3f7",
+                "responses": {
+                    "200": {
+                        "description": "json schema",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "404": {
+                        "description": "Something went wrong, try again"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/tareas/consultar/finalizadas": {
+            "get": {
+                "summary": "Returns all tareas that are finished",
+                "operationId": "ec840acea16752311781ffba802806dc",
+                "responses": {
+                    "200": {
+                        "description": "json schema",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "404": {
+                        "description": "Something went wrong, try again"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/tareas/consultar/enprogreso": {
+            "get": {
+                "summary": "Returns all tareas that are in progress",
+                "operationId": "3a5f4407b8cf3b289cdfe495495682ae",
+                "responses": {
+                    "200": {
+                        "description": "json schema",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "404": {
+                        "description": "Something went wrong, try again"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/tareas/consultar/vencimiento": {
+            "get": {
+                "summary": "Returns all tareas order by due_date",
+                "operationId": "d274ec5f35a712ac54bebdc2cf3d0e45",
+                "responses": {
+                    "200": {
+                        "description": "json schema",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "404": {
+                        "description": "Something went wrong, try again"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "apiAuth": {
+                "type": "http",
+                "description": "Use postman to register and get a token through http://localhost:8000/api/register ",
+                "name": "Token based Based",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}
