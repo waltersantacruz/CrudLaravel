@@ -26,6 +26,16 @@ Go to the folder where your project was cloned and use this command to install d
 
 this will install all laravel dependencies used in this project.
 
+# Install npm dependencies
+
+run this command to install all npm dependencies
+
+> npm install
+
+also run this command
+
+> npm run dev
+
 ## Setting up database
 
 make a copy of the file `.env.example` in the same folder and rename it as `.env`
@@ -40,19 +50,13 @@ now go to the file `.env` and set up your database credentials<br/>
 > DB_USERNAME=`database user`<br/>
 > DB_PASSWORD=`database password`<br/>
 
-## Run migrations
+## Run Migrations
 
 use the following command to run migrations
 
 > php artisan migrate:fresh
 
 this will create all the models in the database for the project
-
-# Install npm dependencies
-
-run this command to install all npm dependencies
-
-> npm install
 
 # Run the project
 
