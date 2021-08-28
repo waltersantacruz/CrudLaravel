@@ -19,7 +19,7 @@ Use this commant to clone the git repository
 
 ## Run the project
 
-Go to the folder where your project was cloned and use this command to install dependencies
+Go to the folder where your project was cloned and use this command to install dependencies<br/>
 `you need to have composer installed for this command`
 
 > composer install
@@ -30,15 +30,15 @@ this will install all laravel dependencies used in this project.
 
 make a copy of the file `.env.example` in the same folder and rename it as `.env`
 
-now go to the file `.env` and set up your database credentials
+now go to the file `.env` and set up your database credentials<br/>
 `you need to have already created a database`
 
-> DB_CONNECTION=mysql
-> DB_HOST=127.0.0.1
-> DB_PORT=3306
-> DB_DATABASE=`database name`
-> DB_USERNAME=`database user`
-> DB_PASSWORD=`database password`
+> DB_CONNECTION=mysql <br/>
+> DB_HOST=127.0.0.1<br/>
+> DB_PORT=3306<br/>
+> DB_DATABASE=`database name`<br/>
+> DB_USERNAME=`database user`<br/>
+> DB_PASSWORD=`database password`<br/>
 
 ## Run migrations
 
