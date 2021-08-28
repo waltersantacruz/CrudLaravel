@@ -47,6 +47,8 @@ class TareaController extends Controller
     {
         return $tareas = Tarea::orderBy('due_date', 'asc')->get();
     }
+
+
    
     public function create()
     {
