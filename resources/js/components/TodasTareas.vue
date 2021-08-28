@@ -37,6 +37,7 @@ export default {
     methods:{
 
         async list(){
+            
             const res = await axios.get('tareas/consultar'); //lista las tareas
             this.tareas=res.data;
         },
