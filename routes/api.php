@@ -17,14 +17,17 @@ use App\Http\Controllers\API\AuthController;
 |
 */
 
+//token generators
 Route::post('login', [AuthController::class, 'login']);
 Route::post('register', [AuthController::class, 'register']);
 
 
 Route::middleware(['auth:sanctum'])->group(function () {
 
+    //erase token if exists
     Route::post('logout', [AuthController::class, 'logout']);
 
+    //returns all tareas 
     Route::get('/tareas/consultar',[TareaController::class, 'index']);
     
     //tareas finalizadas
