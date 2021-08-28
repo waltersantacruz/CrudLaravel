@@ -6,6 +6,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
+
 ## CRUD TAREAS
 
 This project was built using laravel 8 and vuejs.
@@ -70,11 +71,12 @@ Go to your localhost and you will see the project.
 
 # API requests - token authorization
 
-You can see the project documentation through `https://127.0.0.1:8000/api/documentation`.<br/>
+You can see the project documentation through `https://localhost:8000/api/documentation`.<br/>
 
 To make requests through the API you need a token authorization.<br/>
 
 To get the token you can use postman and make a POST request for `http://localhost:8000/api/register`.<br/>
+
 in the Body of this request you need to type the following information:
 
 name = `username` <br/>
