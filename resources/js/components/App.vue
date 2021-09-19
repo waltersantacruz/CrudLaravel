@@ -11,7 +11,7 @@
         <mis-tareas v-bind:user="user" ></mis-tareas>
     </div>
 
-    <!-- Consultar todas las tareas -->
+    <!-- Consultar todas las tareas. -->
     <div v-else>
         <consultar-tareas />
     </div>
